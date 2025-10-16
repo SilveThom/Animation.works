@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://qavpmuhrix3p"]
+
+[ext_resource type="Script" uid="uid://cqrq6txp57row" path="res://main.gd" id="1_hq80v"]
+[ext_resource type="PackedScene" uid="uid://d0bxw8ea56rmq" path="res://cena das particulas.tscn" id="2_e37yg"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_hq80v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.035, 0.195, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="ParticleSystem3d" parent="." instance=ExtResource("2_e37yg")]

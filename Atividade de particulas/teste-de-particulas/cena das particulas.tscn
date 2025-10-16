@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://d0bxw8ea56rmq"]
+
+[ext_resource type="Script" uid="uid://c2u28ga13tmt7" path="res://particleManager.gd" id="1_3vcjf"]
+
+[sub_resource type="Gradient" id="Gradient_magt1"]
+offsets = PackedFloat32Array(0, 0.2826087, 0.39130434, 0.6304348, 0.70289856, 0.7753623)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.50424176, 0.33272627, 1, 0.40311497, 0.69616926, 0.7032613, 1, 1, 1, 1, 1, 0.17251259, 0.5787864, 0.5886184, 1, 0.11888414, 0.55148804, 0.56195724, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mtflc"]
+gradient = SubResource("Gradient_magt1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iu8ap"]
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 40.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 29.999983
+damping_max = 0.8
+scale_min = 0.099999994
+scale_max = 0.29999998
+color = Color(0.24313726, 1, 1, 1)
+color_ramp = SubResource("GradientTexture1D_mtflc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vcjf"]
+albedo_color = Color(0.7185572, 0.2834205, 0.21175718, 1)
+emission_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6oqnf"]
+material = SubResource("StandardMaterial3D_3vcjf")
+top_radius = 0.1
+bottom_radius = 0.2
+height = 0.5
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Gradient" id="Gradient_bpw7u"]
+offsets = PackedFloat32Array(0, 0.2264151, 0.35849056, 0.49056605, 0.6226415, 0.8962264, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.7373599, 0.39602873, 0.55731297, 1, 0.8301887, 0.8301887, 0.8301887, 1, 0.8165296, 0.73174304, 0.2033445, 1, 0.6226415, 0.6226415, 0.6226415, 1, 0.7391958, 0.63821435, 0.22969872, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_04sg4"]
+gradient = SubResource("Gradient_bpw7u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3vcjf"]
+emission_shape = 1
+emission_sphere_radius = 2.0
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 40.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 29.999983
+damping_max = 0.8
+color_ramp = SubResource("GradientTexture1D_04sg4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_magt1"]
+albedo_color = Color(0.1882353, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_magt1"]
+material = SubResource("StandardMaterial3D_magt1")
+
+[sub_resource type="Gradient" id="Gradient_21j7y"]
+colors = PackedColorArray(0, 0, 0, 1, 0.53657174, 0.31020597, 0.12836641, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mqv2t"]
+gradient = SubResource("Gradient_21j7y")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mtflc"]
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 3)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 40.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 29.999983
+damping_max = 0.8
+scale_min = 0.099999994
+scale_max = 0.29999998
+color = Color(0.51492816, 0.4838736, 0.18332008, 1)
+color_ramp = SubResource("GradientTexture1D_mqv2t")
+
+[sub_resource type="BoxMesh" id="BoxMesh_6oqnf"]
+
+[node name="ParticleSystem3d" type="Node3D"]
+script = ExtResource("1_3vcjf")
+
+[node name="Emitter_Point" type="GPUParticles3D" parent="."]
+amount = 500
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_iu8ap")
+draw_pass_1 = SubResource("CylinderMesh_6oqnf")
+
+[node name="Emitter_Sphere" type="GPUParticles3D" parent="."]
+lifetime = 4.0
+process_material = SubResource("ParticleProcessMaterial_3vcjf")
+draw_pass_1 = SubResource("SphereMesh_magt1")
+
+[node name="Emitter_Box" type="GPUParticles3D" parent="."]
+amount = 500
+lifetime = 3.5
+process_material = SubResource("ParticleProcessMaterial_mtflc")
+draw_pass_1 = SubResource("BoxMesh_6oqnf")
