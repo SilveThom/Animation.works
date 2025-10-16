@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://d22fgvg1rj8bb"]
+
+[ext_resource type="Script" uid="uid://cy6g7f256bxt0" path="res://rat.gd" id="1_82lc2"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0e12w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_82lc2"]
+albedo_color = Color(0.10748, 0.10748, 0.10748, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r72o4"]
+material = SubResource("StandardMaterial3D_82lc2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ye3q"]
+albedo_color = Color(1, 1, 0.0666667, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_tnuhv"]
+material = SubResource("StandardMaterial3D_1ye3q")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.86261, 0, 0, 0, 2.16222, 0, 0, 0, 0.0999581, -0.012593061, 0.0020492375, 0.07032869)
+mesh = SubResource("BoxMesh_0e12w")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3536)
+current = true
+
+[node name="Rat" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.00221838, 0.099263, -0.0171289, 0.0465198, -0.0172761, -0.0670489, -0.0762972, -0.0134196, -0.0403829, -1.0237, 0.754516, 0.143583)
+gi_lightmap_texel_scale = 0.01
+mesh = SubResource("BoxMesh_r72o4")
+skeleton = NodePath("")
+script = ExtResource("1_82lc2")
+
+[node name="Waypoints" type="Node3D" parent="."]
+
+[node name="point1" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(0.999638, -0.0269097, 0, 0.0269097, 0.999638, 0, 0, 0, 1, -0.9601515, 0.7001553, 0.32006693)
+
+[node name="point2" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5188565, -0.29585728, 0.277298)
+
+[node name="point3" type="Marker3D" parent="Waypoints"]
+transform = Transform3D(0.99060756, 0.030596526, 0.13326582, -0.029458463, 0.99951035, -0.010503594, -0.13352202, 0.0064791585, 0.991025, 0.23829657, 0.5495194, 0.146323)
+
+[node name="Cheese" type="MeshInstance3D" parent="Waypoints"]
+transform = Transform3D(0.218775, 0, 0, 0, 0.189771, 0, 0, 0, 0.240018, 0.7506314, -0.42187643, 0.230271)
+mesh = SubResource("SphereMesh_tnuhv")
+skeleton = NodePath("")
+
+[node name="Marker3D" type="Marker3D" parent="Waypoints/Cheese"]
