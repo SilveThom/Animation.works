@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwi6rvwmng1gh"]
+
+[ext_resource type="AudioStream" uid="uid://efkeg2qlitok" path="res://Apotos (Day) - Sonic Unleashed [OST] (128) (1).mp3" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://bjmw70md1vm87" path="res://spectrum.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cekjf0tfnrtue" path="res://enemy.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://su51nmtxvtcr" path="res://Explosion.tscn" id="3_lquwl"]
+[ext_resource type="Script" uid="uid://7imqnh8vvvic" path="res://enemy.gd" id="4_7mycd"]
+[ext_resource type="Script" uid="uid://cc6bsnq1nolpm" path="res://enemy2.gd" id="5_272bh"]
+
+[node name="main" type="Node2D"]
+
+[node name="root" type="Node2D" parent="."]
+
+[node name="SpectrumAnalyzer" type="Node2D" parent="."]
+script = ExtResource("1_h2yge")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SpectrumAnalyzer"]
+stream = ExtResource("1_1bvp3")
+autoplay = true
+
+[node name="Enemy1" parent="." instance=ExtResource("2_1bvp3")]
+script = ExtResource("4_7mycd")
+spectrum_node = NodePath("../SpectrumAnalyzer")
+
+[node name="enemy2" parent="." instance=ExtResource("2_1bvp3")]
+script = ExtResource("5_272bh")
+spectrum_node = NodePath("../SpectrumAnalyzer")
+
+[node name="Explosion" parent="." instance=ExtResource("3_lquwl")]

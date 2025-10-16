@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cekjf0tfnrtue"]
+
+[ext_resource type="Script" uid="uid://7imqnh8vvvic" path="res://enemy.gd" id="1_7k104"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_7k104"]
+
+[sub_resource type="Curve" id="Curve_qi2p4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.63586956, 0.70786524), 0.0, 0.0, 0, 0, Vector2(0.6467391, 0.30337083), 0.0, 0.0, 0, 0, Vector2(0.76086956, 0.033707857), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_iifgy"]
+offsets = PackedFloat32Array(0, 0.65753424, 0.82191783, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.6609949, 0.1721063, 0.20481977, 1, 0.82191783, 0.82191783, 0.82191783, 1, 1, 1, 1, 1)
+
+[node name="enemy" type="Node2D"]
+script = ExtResource("1_7k104")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.125, 4.375)
+scale = Vector2(1.8749999, 1.6249998)
+texture = SubResource("ImageTexture_7k104")
+
+[node name="Trail" type="Line2D" parent="Sprite2D"]
+z_index = -1
+position = Vector2(-0.52173924, -0.47619033)
+scale = Vector2(0.08695652, 0.09523809)
+points = PackedVector2Array(-3, 2)
+width = 30.0
+width_curve = SubResource("Curve_qi2p4")
+gradient = SubResource("Gradient_iifgy")
